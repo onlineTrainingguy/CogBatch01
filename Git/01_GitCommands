@@ -1,1 +1,272 @@
+1  echo "gitserver" > /etc/hostname
+    2  git --version
+    3  apt purge git -y
+    4  git --version
+    5  add-apt-repository ppa:git-core/ppa
+    6  apt update
+    7  apt install git -y
+    8  git --version
+    9  mkdir InsuranceApp
+   10  cd InsuranceApp/
+   11  git init
+   12  ls -la
+   13  ls .git
+   14  ls
+   15  whoami
+   16  echo $HOME
+   17  ls -la /root
+   18  git config --global user.name globauser
+   19  ls -la /root
+   20  cat /root/.gitconfig
+   21  git config --global user.email globauser@gmail.com
+   22  cat /root/.gitconfig
+   23  cat .git/config
+   24  git config --local user.name localuser
+   25  cat .git/config
+   26  touch healthins.java medicalins.java lifeins.java
+   27  ls
+   28  git status
+   29  git add healthins.java
+   30  git status
+   31  git rm --cached healthins.java
+   32  git status
+   33  git add -A
+   34  git status
+   35  git commit -m "healthins.java file is added" healthins.java
+   36  git log
+   37  git commit " lifeins.java and medicalins.java files are added"
+   38  git commit -m " lifeins.java and medicalins.java files are added"
+   39  git log
+   40  git remote add origin https://github.com/onlineTrainingguy/InsuranceApp.git
+   41  cat .git/config
+   42  git branch
+   43  git branch -M main
+   44  git branch
+   45  git push -u origin main
+   46  ls
+   47  git log --oneline
+   48  git fetch
+   49  ls
+   50  git log --oneline
+   51  git merge origin/main
+   52  ls
+   53  git log --oneline
+   54  git pull origin main
+   55  ls
+   56  git log --oneline
+   57  ls
+   58  git tag v1
+   59  touch v2.java v21.java
+   60  git add .
+   61  git commit -m "v2 v21 java files are added"
+   62  git tag v2
+   63  git tag
+   64  git push --tags
+   65  git branch
+   66  git branch dev1
+   67  git branch dev2
+   68  git branch
+   69  git push origin dev1
+   70  git push origin dev2
+   71  git push origin main
+   72  git branch
+   73  git checkout dev1
+   74  git pull origin dev1
+   75  ls
+   76  git checkout -
+   77  git merge dev1
+   78  git checkout dev2
+   79  git pull origin dev2
+   80  ls
+   81  git checkout -
+   82  git merge dev2
+   83  ls
+   84  git log --oneline
+   85  git push origin main
+   86  git checkout dev1
+   87  git merge main
+   88  ls
+   89  git push origin dev1
+   90  git checkout dev2
+   91  git merge main
+   92  ls
+   93  git push origin dev2
+   94  git branch
+   95  ls
+   96  echo "This change is done by dev2" > lifeins.java
+   97  git status
+   98  git add .
+   99  git commit -m "lifeins file is modified by dev2"
+  100  cat lifeins.java
+  101  git checkout dev1
+  102  echo "This change is done by dev1" > lifeins.java
+  103  git add .
+  104  git commit -m "lifeins.java file is modified by dev1"
+  105  git checkout dev1
+  106  git checkout main
+  107  git merge dev1
+  108  git merge dev2
+  109  git mergetool --toll=vimdiff
+  110  git mergetool --tool=vimdiff
+  111  cat lifeins.java
+  112  ls
+  113  cat lifeins.java.orig
+  114  rm lifeins.java.orig
+  115  ls
+  116  git status
+  117  git commit -m "Merge Conflict is resolved"
+  118  ls
+  119  git checkout dev1
+  120  cat lifeins.java
+  121  git merge main
+  122  cat lifeins.java
+  123  git checkout dev2
+  124  cat lifeins.java
+  125  git merge main
+  126  cat lifeins.java
+  127  cd ..
+  128  mkdir mr
+  129  cd mr/
+  130  git init
+  131  touch m1 m2 m3
+  132  git add .
+  133* git commit -m "m1"m2
+  134  git status
+  135  rm -ifr .git
+  136  git init
+  137  git status
+  138  git add .
+  139  git status
+  140  git commit -m "m1" m1
+  141  git commit -m "m2" m2
+  142  git commit -m "m3" m3
+  143  ls
+  144  git log --oneline
+  145  git branch feature
+  146  git checkout feature
+  147  ls
+  148  git log --oneline
+  149  touch f1
+  150  git add .
+  151  git commit -m "f"
+  152  git log --oneline
+  153  git checkout -
+  154  touch m4
+  155  git add .
+  156  git commit -m "m4"
+  157  git checkout -
+  158  git merge master
+  159  ls
+  160  git log --oneline
+  161  rm -ifr .git
+  162  ls
+  163  rm f1 m4
+  164  ls
+  165  git init
+  166  git status
+  167  git add .
+  168  git commit -m "m1" m1
+  169  git commit -m "m2" m2
+  170  git commit -m "m3" m3
+  171  git log --oneline
+  172  git branch feature
+  173  touch f1
+  174  git add .
+  175  git commit -m "f1"
+  176  git log --oneline
+  177  git checkout -
+  178  git branch
+  179  rm -ifr .git
+  180  cd ..
+  181  mkdir rm
+  182  cd rm
+  183  git init
+  184  touch m1 m2 m3
+  185  git add .
+  186  git commit -m "m1" m1
+  187  git commit -m "m2" m2
+  188  git commit -m "m3" m3
+  189  git log --oneline
+  190  git branch feature
+  191  git checkout feature
+  192  touch f1
+  193  git add .
+  194  git commit -m "f1"
+  195  git log --oneline
+  196  git checkout master
+  197  touch m4
+  198  git add .
+  199  git commit -m "m4"
+  200  git log --oneline
+  201  git checkout -
+  202  git log --oneline
+  203  git merge master
+  204  git reset --hard HEAD~1
+  205  git log --oneline
+  206  ls
+  207  git rebase master
+  208  ls
+  209  git log --oneline
+  210  cd ..
+  211  mkdir reset
+  212  cd reset/
+  213  git init
+  214  cd ..
+  215  cd InsuranceApp/
+  216  ls
+  217  git branch
+  218  git checkout main
+  219  touch tmp.java
+  220  git stauts
+  221  git status
+  222  git add .
+  223  git commit -m "tmp.java file is added"
+  224  git log --oneline
+  225  git reset HEAD~1
+  226  git status
+  227  git add .
+  228  git commit -m "tmp.java file is added"
+  229  git log --oneline
+  230  git reset --soft HEAD~1
+  231  git status
+  232  git log --oneline
+  233  git commit -m "tmp.java file is added"
+  234  git status
+  235  git log --oneline
+  236  git reset --hard HEAD~1
+  237  git log --oneline
+  238  ls
+  239  touch tmp.java
+  240  git add .
+  241  git commit -m "tmp.java file is added"
+  242  echo "This is tmp file" > tmp.java
+  243  git add.
+  244  git add .
+  245  git commit -m "tmp.java file is modified"
+  246  git log --oneline
+  247  git diff f4f74cf 2a4684e
+  248  git revert f4f74cf
+  249  git log --oneline
+  250  git revert 89ebf1b
+  251  cat tmp.java
+  252  git log --oneline
+  253  git reset --hard HEAD~4
+  254  git log --oneline
+  255  ls
+  256  git checkout dev1
+  257  touch dev11.java
+  258  git add .
+  259  git checkout main
+  260  ls
+  261  git checkout -
+  262  git stash --save "dev11.java file "
+  263  git stash save "dev11.java file "
+  264  ls
+  265  git stash list
+  266  git checkout -
+  267  ls
+  268  git checkout -
+  269  git stash pop
+  270  git commit -m "dev11.java file is added"
+  271  history
 
