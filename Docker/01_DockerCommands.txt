@@ -1,0 +1,157 @@
+----Container basic commands
+
+ 1  ls
+    2  apt update
+    3  apt install dokcer.io -y
+    4  apt install docker.io -y
+    5  docker --version
+    6  docker pull ubuntu
+    7  docker images
+    8  docker pull ubuntu:18.04
+    9  docker images
+   10  docker pull mysql
+   11  docker --help
+   12  docker images
+   13  docker image ls
+   14  docker ps
+   15  docker container ls
+   16  docker container --help
+   17  docker container ls --help
+   18  docker container run -it ubuntu
+   19  docker container ls --all
+   20  docker container run -it -d centos
+   21  docker container ls --all
+   22  docker container run -it --name c1 -d ubuntu
+   23  docker container ls --all
+   24  docker container rename d4e0d2e97d6a c2
+   25  docker container ls --all
+   26  docker images
+   27  docker rmi mysql
+   28  docker pull nginx
+   29  docker container run -it --name web -d nginx
+   30  docker container ls --all
+   31  docker stats web
+   32  docker container run -it --name web1 -m 16m -d nginx
+   33  docker inspect web1
+   34  docker inspect web1 | grep Memory
+   35  docker stats web1
+   36  docker container run -it --name web2 -c 610 -d nginx
+   37  docker inspect web2 | grep Cpu
+   38  docker logs web
+   39  docker ps
+   40  docker container ls
+   41  docker ps -a
+   42  docker container ls --all
+   43  docker exec -it web bash
+   44  docker ps -a
+   45  docker stop c1
+   46  docker ps -a
+   47  docker start c1
+   48  docker ps -a
+   49  docker restart c1
+   50  docker ps -a
+   51  docker kill c1
+   52  docker ps -a
+   53  docker start c1
+   54  docker pause c1
+   55  docker unpause c1
+   56  docker ps -a
+   57  docker rm dfbeb7a0d508
+   58  docker ps -a
+   59  docker rm c1
+   60  docker rm -f c1
+   61  docker ps -a
+   62  docker ps -q
+   63  docker rm -f $(docker ps -a -q)
+   64  dokcer images
+   65  docker images
+   66  docker rmi ubuntu:18.04
+   67  docker images
+   68  docker rmi -f $(docker images -q)
+   69  docker images
+   70  history
+----Docker container registry
+
+  71  docker container run -it --name web -p 80:80 -d ubuntu
+   72  docker exec -it web bash
+   73  echo "<h1>This is super cool html file </h1>" >test.html
+   74  cat test.html
+   75  docker cp test.html web:/var/www/html
+   76  docker ps -a
+   77  docker commit web webimg
+   78  docker images
+   79  docker rm -f web
+   80  docker container run -it --name web1 -p 80:80 -d webimg
+   81  docker exec -it web1 bash
+   82  docker rm -f web1
+   83  docker images
+   84  docker save webimg -o webimg.tar
+   85  ls
+   86  docker rm -f web1
+   87  docker ps -a
+   88  docker rmi webimg
+   89  docker images
+   90  docker load < webimg.tar
+   91  docker images
+   92  docker image tag webimg ramansharma95/webimg
+   93  docker images
+   94  docker login
+   95  docker push ramansharma95/webimg
+   96  docker container run -d -p 5000:5000 --name local_registry registry
+   97  docker images
+   98  docker rmi webimg
+   99  docker rmi ramansharma95/webimg
+  100  docker images
+  101  dokcer ps -a
+  102  docker ps -a
+  103  docker inspect local_registry
+  104  ls /var/lib/docker/volumes/b7c51c8677fe5145ccd7f30ee7812e0cfb4c7c66e1afbaefb57a518f0d1953ce/_data
+  105  docker image tag ubuntu localhost:5000/myubuntu
+  106  docker images
+  107  docker push localhost:5000/myubuntu
+  108  ls /var/lib/docker/volumes/b7c51c8677fe5145ccd7f30ee7812e0cfb4c7c66e1afbaefb57a518f0d1953ce/_data/docker/registry/v2/repositories/
+  109  docker rmi ubuntu
+  110  docker rmi localhost:5000/myubuntu
+  111  docker images
+  112  docker pull localhost:5000/myubuntu
+  113  docker images
+  114  history
+
+---------Docker file
+
+#base Ubunutu image, manadatory command
+FROM ubuntu
+#ARGRUMENT it will not ask any question
+ARG DEBIAN_FRONTEND=noninteractive
+#Run command is used to add an instruction layer on top of base image layers
+#Adding apt update instructions on top of ubuntu base image
+RUN apt-get update
+#Adding apache software on top of ubuntu base image
+RUN apt-get -y install apache2
+#ADD command will copy test.html(create test.html file) from local current directory
+#to docker image /var/www/html
+ADD test.html /var/www/html
+#ENTRYPOINT when a container is started with this image then it will first run
+# the command which written in front of EntryPoint
+# below command starts apache in Foreground
+ENTRYPOINT apachectl -D FOREGROUND
+#ENV is to setup Enviornment variable
+ENV name DEVOPS
+
+
+
+ 115  vi Dockerfile
+  116  docker build . -t mywebimg
+  117  docker images
+  118  docker rmi localhost:5000/myubuntu
+  119  docker images
+  120  docker ps -a
+  121  docker rm -f local_regsitry
+  122  docker rm -f local_registry
+  123  docker images
+  124  ls
+  125  rm webimg.tar
+  126  ls
+  127  docker container run -it --name web -p 80:80 -d mywebimg
+  128  docker exec -it web bash
+  129  history
