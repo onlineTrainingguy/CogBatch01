@@ -1,0 +1,127 @@
+----Network commands
+   1  apt update && apt install docker.io -y
+    2  docker --version
+    3  ip a
+    4  docker container run -it --name c1 -d ubuntu
+    5  docker inspect c1
+    6  docker container run -it --name c2 -d centos
+    7  docker inspect c2
+    8  docker network ls
+    9  docker exec -it c2 bash
+   10  docker rm -f c1 c2
+   11  docker network --help
+   12  docker network ls
+   13  docker network create -d bridge br1
+   14  docker network ls
+   15  ip a
+   16  docker network rm br1
+   17  docker pull ramansharma95/webapp
+   18  docker images
+   19  docker pull ramansharma95/mysql
+   20  docker network ls
+   21  docker network create webnetwork --subnet 192.168.0.0/16 --gateway 192.168.0.1
+   22  docker network ls
+   23  docker network inspect webnetwork
+   24  docker container run -it --name web --network webnetwork -p 80:80 -d ramansharma95/webapp
+   25  docker container run -it --name db --network webnetwork -d ramansharma95/mysql
+   26  docker exec -it web bash
+   27  docker network ls
+   28  docker network rm webnetwork
+   29  docker rm -f web db
+   30  docker network rm webnetwork
+   31  docker network ls
+   32  docker ps -a
+   33  docker container run -it --name h1 --network host -d nginx
+   34  docker inspect h1
+   35  docker rm -f h1
+   36  docker network ls
+   37  docker container run -it --name n1 --network none -d centos
+   38  dokcer inspect n1
+   39  docker inspect n1
+   40  docker exec -it n1 bash
+   41  docker network disconnect none n1
+   42  docker network connect bridge n1
+   43  docker inspect n1
+   44  docker network ls
+   45  docker ps -a
+   46  docker rm -f n1
+
+---Storage
+
+   47  docker container run -it --name c1 -d centos
+   48  docker exec -it c1 bash
+   49  docker stop c1
+   50  docker ps -a
+   51  docker start c12
+   52  docker start c1
+   53  docker exec -it c1 bash
+   54  docker rm -f c1
+   55  docker container run -it --name c1 --mount --type=tmpfs destination=/test -d centos
+   56  docker container run -it --name c1 --mount type=tmpfs destination=/test -d centos
+   57  docker container run -it --name c1 --mount type=tmpfs,destination=/test -d centos
+   58  docker inspect c1
+   59  docker exec -it c1 bash
+   60  docker stop c1
+   61  docker start c1
+   62  docker exec -it c1 bash
+   63  dokcer rm -f c1
+   64  docker rm -f c1
+   65  ls /var/lib/docker/
+   66  ls /var/lib/docker/volumes/
+   67  docker volume ls
+   68  docker volume --help
+   69  docker volume prune
+   70  docker volume ls
+   71  ls /var/lib/docker/volumes/
+   72  docker volume create demo-vol
+   73  ls /var/lib/docker/volumes/
+   74  docker volume rm demo-vol
+   75  ls /var/lib/docker/volumes/\
+   76  docker volume create demo-vol
+   77  ls /var/lib/docker/volumes/
+   78  ls /var/lib/docker/volumes/demo-vol/_data/
+   79  docker container run -it --name c1 --mount source=demo-vol,destination=/demo1 -d ubuntu
+   80  docker exec -it c1 bash
+   81  ls /var/lib/docker/volumes/demo-vol/_data/
+   82  docker rm -f c1
+   83  ls /var/lib/docker/volumes/demo-vol/_data/
+   84  docker container run -it --name c2 --mount source=demo-vol,destination=/app -d centos
+   85  docker exec -it c2 bash
+   86  docker container run -it --name c3 --mount source=demo-vol,destination=/demo -d ubuntu
+   87  docker exec -it c3 bash
+   88  docker inspect c2
+   89  docker exec -it c2 bash
+   90  docker rm -f c2 c3
+   91  docker ps -a
+   92  docker volume ls
+   93  docker volume rm demo-vol
+   94  docker volume ls
+   95  mkdir mydir
+   96  docker container run -it -v /home/ubuntu/mydir:/demo -d ubuntu
+   97  docker ps
+   98  docker container rename 2ea0cfcf289d c1
+   99  docker ps
+  100  docker exec -it c1 bash
+  101  ls mydir/
+  102  docker rm -f c1
+  103  ls
+  104  ls mydir/
+  105  history
+Docker compose
+106  vi docker-compose.yml
+  107  sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  108  chmod +x /usr/local/bin/docker-compose
+  109  vi docker-compose.yaml
+  110  docker-compose up -d
+  111  docker network ls
+  112  docker volume ls
+  113  docker ps
+  114  docker-compose scale db=3
+  115  docker ps -a
+  116  docker-compose scale db=1
+  117  docker ps -a
+  118  docker-compose down
+  119  docker network ls
+  120  docker volume ls
+  121  docker volume prune
+  122  docker ps -a
