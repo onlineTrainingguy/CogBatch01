@@ -1,0 +1,58 @@
+  1  apt update && apt install docker.io -y
+    2  docker swarm init
+    3  docker node ls
+    4  docker network ls
+    5  docker service create  --name=viz --publish=8080:8080/tcp  --constraint=node.role==manager --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock dockersamples/visualizer
+    6  docker service --help
+    7  docker service create --name webservice --replicas 3 -d nginx
+    8  docker service ls
+    9  docker service ps webservice
+   10  docker ps
+   11  docker rm -f ff012ae11a5a
+   12  docker service scale webservice=5
+   13  docker service scale webservice=3
+   14  docker service rm webservice
+   15  docker service create --name webservic --publish 80:80 -d nginx
+   16  dokcer service rm webservic
+   17  docker service rm webservic
+   18  docker service create --name webservice --mode=global -d nginx
+   19  docker service scale webservice=3
+   20  docker service rm webservice
+   21  docker service create --name webservice --constraint="node.roles==manager" -d nginx
+   22  docker service rm webservice
+   23  docker service create --name webservice --constraint="node.role==manager" -d nginx
+   24  docker service scale webservice=3
+   25  docker service rm webservice
+   26  docker service create --name webservice --constraint="node.role==worker" -d nginx
+   27  docker service scale webservice=3
+   28  docker service rm webservice
+   29  docker node update --label-add="env=prod" worker01
+   30  docker service create --name webservice -d --constraint="node.labels.env==prod" --publish 80:80 nginx
+   31  docker service scale webservice=3
+   32  docker service rm webservice
+   33  docker service create --name redis --replicas 5 --update-delay 10s redis:3.0.6
+   34  docker service update redis --image redis:3.0.7
+   35  docker service update redis --image redis:21
+   36  docker service rollback redis
+   37  ls /var/lib/docker/
+   38  cd /var/lib/docker/
+   39  tar -zcvf swarm.tar.gz swarm/
+   40  ls
+   41  docker node ls
+   42  rm -ifr swarm
+   43  ls
+   44  systemctl stop docker
+   45  systemctl start docker
+   46  docker node ls
+   47  systemctl stop docker
+   48  ls
+   49  rm -ifr swarm
+   50  ls
+   51  tar -xvzf swarm.tar.gz
+   52  ls
+   53  rm swarm.tar.gz
+   54  ls
+   55  systemctl start docker
+   56  docker node ls
+   57  docker node rm worker01
+   58  docker node ls
