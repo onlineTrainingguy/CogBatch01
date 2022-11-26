@@ -1,0 +1,113 @@
+  10  kubectl run pod1 --image nginx
+   11  kubectl get pods
+   12  kubectl get pods -o wide
+   13  curl 192.168.130.2
+   14  kubectl exec -it pod1 -- bash
+   15  kubectl get pod pod1 -o yaml
+   16  kubectl get pod pod1 -o json
+   17  kubectl edit pod pod1
+   18  kubectl get pods
+   19  kubectl get pods -o wide
+   20  curl 192.168.130.2
+   21  curl 192.168.130.2:8080
+   22  kubectl describe pod pod1
+   23  kubectl delete pod pod1
+   24  kubectl get pods
+   25  vi pod.yaml
+   26  kubectl create -f pod.yaml
+   27  kubectl get pods
+   28  kubectl describe pod myapp
+   29  vi pod.yaml
+   30  kubectl apply -f pod.yaml
+   31  kubectl describe pod myapp
+   32  kubectl logs myapp
+   33  kubectl delete -f pod.yaml
+   34  kubectl get pods
+   35  kubectl run pod1 --image nginx --dry-run=client -o yaml > pod1.yaml
+   36  cat pod1.yaml
+   37  kubectl get pods
+   38  vi pod.yaml
+   39  kubectl create -f pod.yaml
+   40  kubectl get pods
+   41  kubectl describe pod pod1
+   42  kubectl exec -it pod1 -c c1 -- bash
+   43  kubectl exec -it pod1 -c c2 -- bash
+   44  kubectl logs pod1 -c c1
+   45  kubectl logs pod1 -c c2
+   46  kubectl delete -f pod.yaml
+   47  kubectl get pods
+   48  vi pod.yaml
+   49  kubectl create -f pod.yaml
+   50  kubectl get pod -o wide
+   51  kubectl delete -f pod.yaml
+   52  kubectl get nodes --show-labels
+   53  kubectl get nodes --show-labels kwn1
+   54  kubectl edit node kwn1
+   55  kubectl label nodes kwn1 env=prod
+   56  kubectl get nodes --show-labels kwn1
+   57  kubectl label nodes kwn2 env=stag
+   58  kubectl get nodes --show-labels kwn2
+   59  vi pod.yaml
+   60  kubectl create -f pod.yaml
+   61  kubectl get pods -o wide
+   62  kubectl delete pod --all
+   63  vi pod.yaml
+   64  kubectl apply -f pod.yaml
+   65  kubectl get pods -o wide
+   66  kubectl get pods
+   67  kubectl delete pod pod1
+   68  vi rc.yaml
+   69  kubectl create -f rc.yaml
+   70  kubectl get rc
+   71  kubectl get pods
+   72  kubectl get pods -o wide
+   73  kubectl describe rc nginx-rc
+   74  kubectl get pods -l app=nginx-app
+   75  kubectl get pods -l app==nginx-app
+   76  kubectl run pod1 --image nginx
+   77  kubectl get pods -l app=nginx-app
+   78  kubectl get pods -l app!=nginx-app
+   79  kubectl get pods -o wide
+   80  kubectl delete pod pod1
+   81  kubectl get pods -o wide
+   82  kubectl delete pod nginx-rc-8vj4p
+   83  kubectl get pods -o wide
+   84  kubectl scale rc nginx-rc --replicas 5
+   85  kubectl get pods
+   86  kubectl scale rc nginx-rc --replicas 3
+   87  kubectl get pods
+   88  kubectl delete rc nginx-rc
+   89  kubectl get pods
+   90  vi rs.yaml
+   91  kubectl create -f rs.yaml
+   92  kubectl get rs
+   93  kubectl get pods
+   94  kubectl describe rs nginx-rs
+   95  kubectl get pods -l app=nginx-app
+   96  kubectl get pods -l 'tier in (frontend)'
+   97  kubectl delete rs --all
+   98  kubectl get all
+   99  rm *
+  100  ls
+  101  vi deploy.yaml
+  102  kubectl create -f deploy.yaml
+  103  kubectl get all
+  104  kubectl describe deploy nginx-deploy
+  105  kubectl set image deploy nginx-deploy nginx-container=nginx:1.91
+  106  kubectl get all
+  107  kubectl describe deploy nginx-deploy
+  108  kubectl rollout status deploy nginx-deploy
+  109  kubectl rollout undo deploy nginx-deploy
+  110  kubectl get all
+  111  kubectl set image deploy nginx-deploy nginx-container=nginx:1.9.1
+  112  kubectl get all
+  113  kubectl describe deploy nginx-deploy
+  114  kubectl get all
+  115  kubectl delete rs nginx-deploy-5c6f848db6
+  116  kubectl get all
+  117  kubectl scale deploy nginx-deploy --replicas 5
+  118  kubectl get all
+  119  kubectl scale deploy nginx-deploy --replicas 3
+  120  kubectl get all
+  121  kubectl delete deploy nginx-deploy
+  122  kubectl get all
